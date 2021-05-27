@@ -1,2 +1,0 @@
-print("yechizi")
-print("felan")
