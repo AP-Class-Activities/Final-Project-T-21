@@ -1,8 +1,8 @@
 class person:
-    def __init__(name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account):
+    def __init__(name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account, store):
         self.__name = name
         self.__lastname = lastname
-        self.__username = username
+        # self.__username = username
         self.__sex = sex
         self.__phone_numer = phone_numer
         self.__national_id = national_id
@@ -10,6 +10,7 @@ class person:
         self.__address = address
         self.__email = email
         self.__bank_account = bank_account
+        # self.__store = store
     
     @property
     def name(self):
@@ -31,13 +32,13 @@ class person:
                  raise ValueError('you cant use number or ~`!@#$%^&*()_-+=|\?/><.,1234567890"[]}{:;'+"'"+' for lastname.')
         self.__lastname = value
     
-    @property
-    def username(self):
-        return self.__username
-    @username.setter
-    def username(self,value):
+    # @property
+    # def username(self):
+    #     return self.__username
+    # @username.setter
+    # def username(self,value):
 
-        self.__username = value
+    #     self.__username = value
 
     @property
     def sex(self): 
@@ -71,8 +72,8 @@ class person:
         return self.__password
     @password.setter
     def password(self,value):
-        if Number(value)<4 or Number(value)>10:
-            raise ValueError('password should have 4 to 10 digits')
+        if len(value)<4 or len(value)>10:
+            raise ValueError('password should have 4 to 10 digits or Letters')
         self.__password = value
     
     @property
@@ -97,8 +98,14 @@ class person:
         if Number(value)!=16:
             raise ValueError('bank account should have 16 digits')
         self.__bank_account = value
-
     
+    # @property
+    # def store(self):
+    #     return self.__store
+    # @store.setter
+    # def store(self,value): 
+    #     self.__store = value
+
     def __Number__(self,value):
         a=value
         number=0
@@ -106,7 +113,9 @@ class person:
             a//10
             number+=1
         return number
-
-
-
+    
+    def __str__(self):
+         return 'name: {}   lastname{}   user name: {}   sex:{}   phone number: {}   national id: {}   default address: {}   email: {}   default bank_account:{}   nearest store:{}'\
+            .format(self.name, self.lastname, self.username, self.sex, self.phone_numer, self.national_id,self. address, self.email, self.bank_account, self.store)
+        
 
