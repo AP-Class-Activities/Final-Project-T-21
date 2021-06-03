@@ -1,5 +1,5 @@
-class Product:
-    def __init__(self, name , price , amount , availability , product_ID , discount , rating , specifications = {} ,  comments = {}):
+class product:
+    def __init__(self, name , product_ID , model , price , amount , availability , rating , price_after_discount , discount = 0 , specifications = {} ,  comments = [] , category = {}):
         
         if product_ID > 999999 or product_ID < 100000:
             raise ValueError('The product ID should be contain six characters.')
@@ -13,6 +13,13 @@ class Product:
 
         self.__specifications = specifications
 
+        self.__model = model
+
+        if category not in ['Electronics','Clothing','Health Care','Garden & Outdoor','Books','Collectibles & Fine Art','Home & Kitchen','Toys & Games'] :
+            raise ValueError('The category for a product should be in [Electronics','Clothing','Health Care',\
+                 'Garden & Outdoor','Books','Collectibles & Fine Art','Home & Kitchen','Toys & Games]')
+        self.__category = category
+
         if price < 0:
             raise ValueError('The value of price should be positive.')
         self.__price = int(price)
@@ -21,11 +28,13 @@ class Product:
             raise ValueError('The value of amount should be positive.')
         self.__amount = int(amount)
 
-         if rating not in [1,2,3,4,5]: 
+        if rating not in [1,2,3,4,5]: 
             raise ValueError('The value of rating should be from 1 to 5.')
         self.__rating = rating
 
         self.__comments = comments
+
+        self.__price_after_discount = price_after_discount
 
         if discount < 0:
             raise ValueError('The value of discount should be positive.')
@@ -33,6 +42,16 @@ class Product:
 
 
     ## Setters & Getters
+
+    @property
+    def product_ID(self):
+        return self.__product_ID
+     
+    @product_ID.setter
+    def product_ID(self,value):
+        if value > 999999 or value < 100000:
+            raise ValueError('The product ID should be contain six characters.')
+        self.__product_ID = value   
 
     @property
     def name(self):
@@ -43,32 +62,42 @@ class Product:
         self.__name = value
 
     @property
-    def product_ID(self):
-        return self.__product_ID
-     
-    @product_ID.setter
-    def product_ID(self,value): 
-        if product_ID > 999999 or product_ID < 100000:
-            raise ValueError('The product ID should be contain six characters.')
-        self.__product_ID = value
-
-    @property
     def amount(self):
         return self.__amount
      
     @amount.setter
     def amount(self,value):
-        if amount < 0:
+        if value < 0:
             raise ValueError('The value of amount should be positive.')
         self.__amount = value
 
     @property
     def specifications(self):
-        return self.specifications
+        return self.__specifications
      
     @specifications.setter
     def specifications(self,value): 
         self.specifications = value
+
+    @property
+    def model(self):
+        return self.__model
+     
+    @model.setter
+    def model(self,value): 
+        self.__model = value
+
+    @property
+    def category(self):
+        return self.__category
+     
+    @category.setter
+    def category(self,value):
+        if category not in ['Electronics','Clothing','Health Care','Garden & Outdoor','Books','Collectibles & Fine Art','Home & Kitchen','Toys & Games'] :
+            raise ValueError('The category for a product should be in [Electronics','Clothing','Health Care',\
+                 'Garden & Outdoor','Books','Collectibles & Fine Art','Home & Kitchen','Toys & Games]')
+        self.__category = value
+        
 
     @property
     def price(self):
@@ -76,7 +105,7 @@ class Product:
      
     @price.setter
     def price(self,value):
-        if price < 0:
+        if value < 0:
             raise ValueError('The value of price should be positive.')
         self.__price = value
    
@@ -86,7 +115,7 @@ class Product:
      
     @rating.setter
     def rating(self,value): 
-        if rating not in [1,2,3,4,5]: 
+        if value not in [1,2,3,4,5]: 
             raise ValueError('The value of rating should be from 1 to 5.')
         self.__rating = value
 
@@ -99,12 +128,20 @@ class Product:
         self.__comments = value
 
     @property
+    def price_after_discount(self):
+        return self.__price_after_discount
+     
+    @price_after_discount.setter
+    def price_after_discount(self,value): 
+        self.__price_after_discount = value
+
+    @property
     def discount(self):
         return self.__discount
      
     @discount.setter
     def discount(self,value):
-        if discount < 0:
+        if value > 0:
             raise ValueError('The value of discount should be positive.')
         self.__discount = value
 
@@ -114,6 +151,6 @@ class Product:
      
     @availability.setter
     def availability(self,value):
-        if amount < 1:
+        if value.amount < 1:
             raise ValueError('Item out of stock.')
         self.__availability = value
