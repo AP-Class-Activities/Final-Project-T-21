@@ -1,8 +1,8 @@
 class person:
-    def __init__(name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account, store):
+    def __init__(self, name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account, nearest_store):
         self.__name = name
         self.__lastname = lastname
-        # self.__username = username
+        self.__username = username
         self.__sex = sex
         self.__phone_numer = phone_numer
         self.__national_id = national_id
@@ -10,7 +10,7 @@ class person:
         self.__address = address
         self.__email = email
         self.__bank_account = bank_account
-        # self.__store = store
+        self.__nearest_store = nearest_store
     
     @property
     def name(self):
@@ -32,13 +32,12 @@ class person:
                  raise ValueError('you cant use number or ~`!@#$%^&*()_-+=|\?/><.,1234567890"[]}{:;'+"'"+' for lastname.')
         self.__lastname = value
     
-    # @property
-    # def username(self):
-    #     return self.__username
-    # @username.setter
-    # def username(self,value):
-
-    #     self.__username = value
+    @property
+    def username(self):
+        return self.__username
+    @username.setter
+    def username(self,value):
+        self.__username = value
 
     @property
     def sex(self): 
@@ -54,7 +53,7 @@ class person:
         return self.__phone_number
     @phone_number.setter
     def phone_number(self,value):
-        if Number(value)!=11:
+        if len(value)!=11:
             raise ValueError('phone number should have 11 digits')
         self.__phone_number = value
 
@@ -63,7 +62,7 @@ class person:
         return self.__national_id
     @national_id.setter
     def national_id(self,value):
-        if Number(value)!=10:
+        if len(value)!=10:
             raise ValueError('national id should have 10 digits')
         self.__national_id = value
     
@@ -95,27 +94,21 @@ class person:
         return self.__bank_account
     @bank_account.setter
     def bank_account(self,value):
-        if Number(value)!=16:
+        if len(value)!=16:
             raise ValueError('bank account should have 16 digits')
         self.__bank_account = value
     
-    # @property
-    # def store(self):
-    #     return self.__store
-    # @store.setter
-    # def store(self,value): 
-    #     self.__store = value
+    @property
+    def nearest_store(self):
+        return self.__nearest_store
+    @nearest_store.setter
+    def nearest_store(self,value): 
+        self.__nearest_store = value
 
-    def __Number__(self,value):
-        a=value
-        number=0
-        while a>0:
-            a//10
-            number+=1
-        return number
+
     
     def __str__(self):
          return 'name: {}   lastname{}   user name: {}   sex:{}   phone number: {}   national id: {}   default address: {}   email: {}   default bank_account:{}   nearest store:{}'\
-            .format(self.name, self.lastname, self.username, self.sex, self.phone_numer, self.national_id,self. address, self.email, self.bank_account, self.store)
+            .format(self.name, self.lastname, self.username, self.sex, self.phone_numer, self.national_id,self. address, self.email, self.bank_account, self.nearest_store)
         
 
