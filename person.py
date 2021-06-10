@@ -1,10 +1,10 @@
 class person:
-    def __init__(self, name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account, nearest_store):
+    def __init__(self, name, lastname, username, sex, phone_number, national_id, password, address, email, bank_account, nearest_store):
         self.__name = name
         self.__lastname = lastname
         self.__username = username
         self.__sex = sex
-        self.__phone_numer = phone_numer
+        self.__phone_number = phone_number
         self.__national_id = national_id
         self.__password = password
         self.__address = address
@@ -109,6 +109,6 @@ class person:
     
     def __str__(self):
          return 'name: {}   lastname{}   user name: {}   sex:{}   phone number: {}   national id: {}   default address: {}   email: {}   default bank_account:{}   nearest store:{}'\
-            .format(self.name, self.lastname, self.username, self.sex, self.phone_numer, self.national_id,self. address, self.email, self.bank_account, self.nearest_store)
+             .format(self.name, self.lastname, self.username, self.sex, self.phone_number, self.national_id,self. address, self.email, self.bank_account, self.nearest_store)
         
 
