@@ -1,5 +1,5 @@
-class product:
-    def __init__(self, name , product_ID , model , price , amount , availability , rating , price_after_discount , discount = 0 , specifications = {} ,  comments = [] , category = {}):
+class Product:
+    def __init__(self, name , product_ID , model , price , amount , availability , rating , discount = 0, specifications = {} ,  comments = [] , category = {}):
         
         if product_ID > 999999 or product_ID < 100000:
             raise ValueError('The product ID should be contain six characters.')
@@ -34,13 +34,14 @@ class product:
 
         self.__comments = comments
 
-        self.__price_after_discount = price_after_discount
-
         if discount < 0:
             raise ValueError('The value of discount should be positive.')
         self.__discount = int(discount)
-
-
+        
+    def ovrall_price(self, price, discount):
+       price_after_discount = price - price * (discount/100)
+       return price_after_discount
+        
     ## Setters & Getters
 
     @property
@@ -48,10 +49,8 @@ class product:
         return self.__product_ID
      
     @product_ID.setter
-    def product_ID(self,value):
-        if value > 999999 or value < 100000:
-            raise ValueError('The product ID should be contain six characters.')
-        self.__product_ID = value   
+    def product_ID(self,value): 
+        self.__product_ID = 'pr' + value   
 
     @property
     def name(self):
@@ -128,14 +127,6 @@ class product:
         self.__comments = value
 
     @property
-    def price_after_discount(self):
-        return self.__price_after_discount
-     
-    @price_after_discount.setter
-    def price_after_discount(self,value): 
-        self.__price_after_discount = value
-
-    @property
     def discount(self):
         return self.__discount
      
@@ -154,3 +145,16 @@ class product:
         if value.amount < 1:
             raise ValueError('Item out of stock.')
         self.__availability = value
+
+
+    def __str__(self):
+         return 'name : {}   product_ID : {}   model : {}   price : {}   amount : {}  availability: {}   rating : {}   discount:{}   specifications:{}  comments :{}  category : {}'\
+            .format(self.name, self.product_ID, self.model, self.price, self.amount, self.availability ,self.rating, self.discount, self.specifications, self.comments , self.category)
+
+
+'''
+s = Product("name",222222,"model",1000,1,"yes",3,0,"spec","comment","Books")
+print(s)
+object = Product("name",222222,"model",1000,1,"yes",3,0,"spec","comment","Books")
+print(object.ovrall_price(100,100))
+'''
