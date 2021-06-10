@@ -155,6 +155,6 @@ class Product:
 '''
 s = Product("name",222222,"model",1000,1,"yes",3,0,"spec","comment","Books")
 print(s)
-object = Product("name",222222,"model",1000,1,"yes",3,0,"spec","comment","Books")
+object = Product("name",222222,"model",10000,1,"yes",3,0,"spec","comment","Books")
 print(object.ovrall_price(100,100))
 '''
