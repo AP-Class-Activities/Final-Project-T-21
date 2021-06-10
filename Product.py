@@ -39,13 +39,17 @@ class Product:
         self.__discount = int(discount)
         
     def ovrall_price(self):
-        price_after_discount= self.price - self.price * (self.discount/100)
+        price_after_discount = self.price - self.price * (self.discount/100)
         if price_after_discount < 0:
            raise ValueError('The value of price after discount should be positive.')
         return price_after_discount
 
     def add_comment(self,str):
         self.comments.append(str)
+
+    def seller_benefit(self):
+        benefit = 0.15 * self.price
+        return benefit
         
     ## Setters & Getters
 
@@ -157,5 +161,7 @@ class Product:
             .format(self.name, self.product_ID, self.model, self.price, self.amount, self.availability ,self.rating, self.discount, self.specifications, self.comments , self.category)
 '''
 object = Product("name",222222,"model",10000,1,"yes",3,100,"spec","comment","Books")
+print(object)
 print(object.ovrall_price())
+print(object.seller_benefit())
 '''
