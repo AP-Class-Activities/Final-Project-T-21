@@ -1,3 +1,5 @@
+from Wallet import wallet 
+
 class cart:
     def __init__(self , amount = 0 , total = 0 , items = {}):
          self.__total = total
@@ -73,12 +75,5 @@ class cart:
     def price(self,value): 
         self.__price = value
 
-    @property
-    def wallet(self):
-        return self.__wallet
-     
-    @wallet.setter
-    def wallet(self,value): 
-        self.__wallet = value
 
 

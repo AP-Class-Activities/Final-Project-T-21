@@ -13,7 +13,8 @@ class wallet :
         return self.__balance + value
     
     def __iadd__ (self, value):
-        return self.__balance += value
+        self.__balance = self.__balance + value
+        return self.__balance 
     
     def __sub__ (self, value):
         if (self.__balance-value)<0:
@@ -23,7 +24,8 @@ class wallet :
     def __isub__ (self, value):
         if (self.__balance-value)<0:
             raise ValueError('There is not enough balance in your account!')
-        return  self.__balance -= value
+        self.__balance = self.__balance - value
+        return  self.__balance 
     
     def __eq__(self, wallet2):
         return self.__balance == wallet2.__balance
