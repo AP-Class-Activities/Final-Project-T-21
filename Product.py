@@ -32,15 +32,20 @@ class Product:
             raise ValueError('The value of rating should be from 1 to 5.')
         self.__rating = rating
 
-        self.__comments = comments
+        self.__comments = []
 
         if discount < 0:
             raise ValueError('The value of discount should be positive.')
         self.__discount = int(discount)
         
-    def ovrall_price(self, price, discount):
-       price_after_discount = price - price * (discount/100)
-       return price_after_discount
+    def ovrall_price(self):
+        price_after_discount= self.price - self.price * (self.discount/100)
+        if price_after_discount < 0:
+           raise ValueError('The value of price after discount should be positive.')
+        return price_after_discount
+
+    def add_comment(self,str):
+        self.comments.append(str)
         
     ## Setters & Getters
 
@@ -150,11 +155,7 @@ class Product:
     def __str__(self):
          return 'name : {}   product_ID : {}   model : {}   price : {}   amount : {}  availability: {}   rating : {}   discount:{}   specifications:{}  comments :{}  category : {}'\
             .format(self.name, self.product_ID, self.model, self.price, self.amount, self.availability ,self.rating, self.discount, self.specifications, self.comments , self.category)
-
-
 '''
-s = Product("name",222222,"model",1000,1,"yes",3,0,"spec","comment","Books")
-print(s)
-object = Product("name",222222,"model",10000,1,"yes",3,0,"spec","comment","Books")
-print(object.ovrall_price(100,100))
+object = Product("name",222222,"model",10000,1,"yes",3,100,"spec","comment","Books")
+print(object.ovrall_price())
 '''
