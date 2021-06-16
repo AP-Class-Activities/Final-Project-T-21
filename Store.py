@@ -1,18 +1,18 @@
 from Person import person 
 from Seller import seller
 from Customer import customer
-from  import
+from Operator import operator
 import pickle
 class store:
-    def __init__(self, name, addres, sellers=[], customers=[], =[] ):
+    def __init__(self, name, addres, sellers=[], customers=[], operators=[] ):
         self.__name = name
         self.__addres = addres
         self.__seller_file = r'data\{}_sellers.dat'.format(self.__############)
         self.__customer_file = r'data\{}_customers.dat'.format(self.__############)
-        self.__ _file = r'data\{}_#######.dat'.format(self.__############)
+        self.__operator_file = r'data\{}_operators.dat'.format(self.__############)
         self.__sellers = sellers
         self.__customers = customers
-        self.__ =
+        self.__operators = operators
 
     @property
     def name(self):
@@ -37,8 +37,8 @@ class store:
         return self.__customers
     
     @property
-    def (self): 
-        return self.__
+    def operators(self): 
+        return self.__operators
 
     def __save_sellers(self): 
         with open(self.__seller_file, 'wb') as file:
@@ -56,11 +56,11 @@ class store:
         with open(self.__customer_file, 'rb') as file:
             self.__customers = pickle.load(file)
     
-    def __save_(self): 
-        with open(self.__ _file, 'wb') as file:
-            pickle.dump(self., file)
+    def __save_operators(self): 
+        with open(self.__operators_file, 'wb') as file:
+            pickle.dump(self.__operators, file)
 
-    def __read_(self): 
-        with open(self.__ _file, 'rb') as file:
-            self.__  = pickle.load(file)
+    def __read_operators(self): 
+        with open(self.__operators_file, 'rb') as file:
+            self.__operators = pickle.load(file)
 
