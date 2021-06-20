@@ -74,8 +74,6 @@ class customer (person):
         return self.__gift_cards
     @gift_cards.setter
     def gift_cards(self,value): 
-        # if : 
-        #     raise ValueError('')
         self.__gift_cards = value
 
     # @property
@@ -89,3 +87,7 @@ class customer (person):
     
     def __str__(self):
         return super(person,self).__str__() +''
+
+    def __del__(self):
+        print ('account of {} {} (id= {}) deleted.'.format(self.name , self.lastname, self.id))
+  

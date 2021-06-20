@@ -1,7 +1,12 @@
+import re
+
 class person:
-    def __init__(self, name, lastname, username, sex, phone_number, national_id, password, address, email, bank_account, nearest_store):
-        self.__name = name
-        self.__lastname = lastname
+    def __init__(self, name, lastname, username, sex, phone_number, national_id, password, address, email, bank_account, nearest_store = None):
+        for i in name + lastname:
+            if i in ('~`!@#$%^&*()_-+=|\?/><.,1234567890"[]}{:;'+"'"):
+                 raise ValueError('you cant use number or ~`!@#$%^&*()_-+=|\?/><.,1234567890"[]}{:;'+"'"+'for name or lastname')
+        self.name = name
+        self.lastname = lastname
         self.__username = username
         self.__sex = sex
         self.__phone_number = phone_number
@@ -11,26 +16,6 @@ class person:
         self.__email = email
         self.__bank_account = bank_account
         self.__nearest_store = nearest_store
-    
-    @property
-    def name(self):
-        return self.__name
-    @name.setter
-    def name(self,value):
-        for i in value:
-            if i in ('~`!@#$%^&*()_-+=|\?/><.,1234567890"[]}{:;'+"'"):
-                 raise ValueError('you cant use number or ~`!@#$%^&*()_-+=|\?/><.,1234567890"[]}{:;'+"'"+'for name')
-        self.__name = value
-    
-    @property
-    def lastname(self):
-        return self.__lastname
-    @lastname.setter
-    def lastname(self,value):
-        for i in value:
-            if i in ('~`!@#$%^&*()_-+=|\?/><.,1234567890"[]}{:;'+"'") :
-                 raise ValueError('you cant use number or ~`!@#$%^&*()_-+=|\?/><.,1234567890"[]}{:;'+"'"+' for lastname.')
-        self.__lastname = value
     
     @property
     def username(self):
@@ -53,7 +38,9 @@ class person:
         return self.__phone_number
     @phone_number.setter
     def phone_number(self,value):
-        if len(value)!=11:
+        if len(value[0])!=11 :
+            raise ValueError('phone number should have 11 digits')
+        if len(value)==2 and len(value[1])!=11 :
             raise ValueError('phone number should have 11 digits')
         self.__phone_number = value
 
@@ -87,6 +74,10 @@ class person:
         return self.__email
     @email.setter
     def email(self,value):
+        pattern=['@gmail.com$','@yahoo.com$','@outlook.com$','@icloud.com$','@hubspot.com$']
+        for i in pattern:
+            if not re.match(i,value):
+                raise ValueError('email shold end with @... .com. /n only gmail, yahoo, outlook, icloud and hubspot are accepted')
         self.__email = value
     
     @property
@@ -109,6 +100,6 @@ class person:
     
     def __str__(self):
          return 'name: {}   lastname{}   user name: {}   sex:{}   phone number: {}   national id: {}   default address: {}   email: {}   default bank_account:{}   nearest store:{}'\
-             .format(self.name, self.lastname, self.username, self.sex, self.phone_number, self.national_id,self. address, self.email, self.bank_account, self.nearest_store)
+             .format(self.name, self.lastname, self.username, self.sex, self.phone_number, self.national_id,self.address, self.email, self.bank_account, self.nearest_store)
         
 
