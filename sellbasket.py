@@ -2,7 +2,7 @@ from customer import customer
 from Product import product
 
 class sellbasket:
-   def __init__(self , customer , product , amount=0 , item{} , total=0 , totalsold=0 , totalrejected=0):
+   def __init__(self , customer , product , amount=0 , item={} , total=0 , totalsold=0 , totalrejected=0):
        self.__customer = customer
        self.__product = product 
        if amount < 0:
