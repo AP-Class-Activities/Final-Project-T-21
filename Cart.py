@@ -1,4 +1,4 @@
-from Wallet import wallet 
+from Wallet import wallet
 
 class cart:
     def __init__(self , amount = 0 , total = 0 , items = {}):
@@ -30,6 +30,9 @@ class cart:
                 return wallet - self.__total
             else:
                 return "Cash paid not enough"
+
+    def showcart(self):
+        return self.items , self.total
 
     # Setters & Getters
 
@@ -74,6 +77,15 @@ class cart:
     @price.setter
     def price(self,value): 
         self.__price = value
+
+'''
+object = cart()
+object.add_item("product1",1,2.00)
+object.add_item("product2",2,5.00)
+print(object.showcart())
+'''
+
+
 
 
 
