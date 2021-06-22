@@ -1,13 +1,25 @@
 import person from person
 
 class operator:
-    def __init__(self , name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account , distance , new_customer , new_operator , new_Product , status):
+    def __init__(self , name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account , distance , new_customer , new_operator , new_Product , status="checking"):
     super(operator,self).__init__(name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account)
        self.__distance = distance
        self.__new_Product = new_Product
        self.__new_customer = new_customer
        self.__operator = new_operator
        self.__status = status
+
+    #def send_email(self , email):
+
+
+    def check_status (self , status):
+        if status == "accepted" :
+            self.__person.update
+            return self.__person
+
+        elif status == "unaccepted" :
+            self.__person.del
+            return self.__person
 
 
     @property
@@ -17,5 +29,46 @@ class operator:
     @distance.setter
     def distance(self,value): 
         self.__distance = value
+
+    @property
+    def new_Product(self):
+        return self.__new_Product
+     
+    @new_Product.setter
+    def new_Product(self,value): 
+        self.__new_Product = value
+
+    @property
+    def new_customer(self):
+        return self.__new_customer
+     
+    @new_customer.setter
+    def new_customer(self,value): 
+        self.__new_customer = value
+
+    @property
+    def new_operator(self):
+        return self.__new_operator
+     
+    @new_operator.setter
+    def new_operator(self,value): 
+        self.__new_operator = value
+
+    @property
+    def status(self):
+        return self.__status
+     
+    @status.setter
+    def status(self,value): 
+        self.__status = value
+
+
+
+
+
+
+    
+
+    
 
 
