@@ -3,7 +3,7 @@ from Wallet import wallet
 from sellbasket import sellbasket
 
 class seller (person):
-    def __init__(self, name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account ,company_name, id, rate ,sendingtimetostore, wallet=None, sellbasket, status='checking' ):
+    def __init__(self, name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account ,company_name, id, rate ,sendingtimetostore, wallet=None, sellbasket=None, status='checking' ):
         super(seller,self).__init__(name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account)
         self.__company_name = company_name
         self.__id = id
@@ -81,7 +81,7 @@ class seller (person):
 
   
     def __str__(self):
-        return super(person,self).__str__() +'name: {}'.format(self.company_name)
+        return super(person,self).__str__() +'   company name: {}   rate:{}'.format(self.company_name, self.rate)
     
     def __del__(self):
         print ('{} {} seller from {}company (id= {}) deleted.'.format(self.name , self.lastname, self.company_name, self.id))

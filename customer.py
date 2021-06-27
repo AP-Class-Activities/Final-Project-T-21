@@ -2,8 +2,10 @@ from Person import person
 from Wallet import wallet
 from Cart import cart
 from Prodoct import prodoct
+import os
+
 class customer (person):
-    def __init__(self, name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account, id, wallet=None, cart, favorites=[], previous_orders=[], returned_products=[], gift_cards=[] ):
+    def __init__(self, name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account, id, wallet=None, cart=None, favorites=[], previous_orders=[], returned_products=[], gift_cards=[] ):
         super(customer,self).__init__(name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account)
         self.__id = id
         self.__wallet = wallet
@@ -18,11 +20,9 @@ class customer (person):
         return self.__id
     @id.setter
     def id(self):
-        #  with open(self.__customer_file, 'rb') as file:
-        #      if self.__national_id == pickle.load(file):
-        #          raise ValueError('')
-            
-         self.__id = 'CU'+ self.__national_id[3:-1]
+        if os.path.exists('CU{}.txt'.format(self.__national_id[3:-1])):
+            raise ValueError('custumer account with this national id already exist.')
+        self.__id = 'CU'+ self.__national_id[3:-1]
 
     @property
     def wallet(self):
@@ -90,4 +90,38 @@ class customer (person):
 
     def __del__(self):
         print ('account of {} {} (id= {}) deleted.'.format(self.name , self.lastname, self.id))
-  
+
+#  سه تا متد پایین با کل فایل کار میکنه (مثلا همه کاستومرا پاک میشن)
+    def save_informations (self):
+        file_name = '{}.txt'.format(self.national_id)
+        f = open(file_name, 'a+')
+        lst={
+             '{}'.format(self.username):
+                {'name':self.name,'lastname':self.lastname,
+                'username':self.username,'sex':self.sex,'phone_numer':self.phone_numer,
+                'national_id':self.national_id,'password':self.password,'address':self.address,
+                'email':self.email,'bank_account':self.bank_account,'id':self.id,
+                'wallet':self.wallet,'cart':self.cart,'favorites':self.favorites,
+                'previous_orders':self.previous_orders,'returned_products':self.returned_products,
+                'gift_cards':self.gift_cards}
+            }
+        # f.write('{} ={}'.format(self.id, lst))
+        file.write('{')
+        for self.username, data in lst.items():
+           file.write('\'' + username + '\':' + str(data) + ',')
+        file.write('}')
+        f.close()
+
+    def read_informations (self):
+        f = open("customers.txt", "r")
+        contents = f.read()
+        print(contents)
+        f.close()
+
+    def delet_informations(self):
+        f = open('dataBase.txt', 'a+')
+        f.truncate(0)
+
+
+
+
