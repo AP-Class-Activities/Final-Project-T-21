@@ -94,7 +94,7 @@ class customer (person):
 #  سه تا متد پایین با کل فایل کار میکنه (مثلا همه کاستومرا پاک میشن)
     def save_informations (self):
         file_name = '{}.txt'.format(self.national_id)
-        f = open(file_name, 'a+')
+        f = open(file_name, 'ab+')
         lst={
              '{}'.format(self.username):
                 {'name':self.name,'lastname':self.lastname,

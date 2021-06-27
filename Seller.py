@@ -1,6 +1,7 @@
 from Person import person
 from Wallet import wallet
 from sellbasket import sellbasket
+import os
 
 class seller (person):
     def __init__(self, name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account ,company_name, id, rate ,sendingtimetostore, wallet=None, sellbasket=None, status='checking' ):
@@ -24,7 +25,9 @@ class seller (person):
     def id(self):
         return self.__id
     @id.setter
-    def id(self): 
+    def id(self):
+        if os.path.exists('SL{}.txt'.format(self.__national_id[3:-1])):
+            raise ValueError('seller account with this national id already exist.')
         self.__id = 'SL'+ self.__national_id[3:-1]
 
     @property
