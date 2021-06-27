@@ -1,8 +1,8 @@
+import os
+
 class Product:
     def __init__(self, name , product_ID , model , price , amount , availability , rating , discount = 0, specifications = {} ,  comments = [] , category = {}):
         
-        if product_ID > 999999 or product_ID < 100000:
-            raise ValueError('The product ID should be contain six characters.')
         self.__product_ID = product_ID
         
         self.__name = name
@@ -50,6 +50,7 @@ class Product:
     def seller_benefit(self):
         benefit = 0.15 * self.price
         return benefit
+
         
     ## Setters & Getters
 
@@ -58,8 +59,10 @@ class Product:
         return self.__product_ID
      
     @product_ID.setter
-    def product_ID(self,value): 
-        self.__product_ID = 'pr' + value   
+    def product_ID(self): 
+        if os.path.exists('PR{}.txt'.format(self.__product_ID)):
+            raise ValueError('Product with this ID already exist.')
+        self.__product_ID = 'PR'+ self.__product_ID  
 
     @property
     def name(self):
@@ -160,7 +163,7 @@ class Product:
          return 'name : {}   product_ID : {}   model : {}   price : {}   amount : {}  availability: {}   rating : {}   discount:{}   specifications:{}  comments :{}  category : {}'\
             .format(self.name, self.product_ID, self.model, self.price, self.amount, self.availability ,self.rating, self.discount, self.specifications, self.comments , self.category)
 '''
-object = Product("name",222222,"model",10000,1,"yes",3,100,"spec","comment","Books")
+object = Product("name",222222,"model",10000,1,"yes",3,10,"spec","comment","Books")
 print(object)
 print(object.ovrall_price())
 print(object.seller_benefit())
