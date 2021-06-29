@@ -1,9 +1,7 @@
-from customer import customer
 from Product import product
 
 class sellbasket:
-   def __init__(self , customer , product , amount=0 , item={} , total=0 , totalsold=0 , totalrejected=0 , price):
-       self.__customer = customer
+   def __init__(self  , product , amount=0 , item={} , total=0 , totalsold=0 , totalrejected=0 , price):
        self.__product = product 
        if amount < 0:
           raise ValueError('The value of amount should be positive.')
