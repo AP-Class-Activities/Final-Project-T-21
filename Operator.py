@@ -2,12 +2,12 @@ from person import person
 
 class operator:
     def __init__(self , name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account , distance , new_customer , new_operator , new_Product , status="checking"):
-    super(operator,self).__init__(name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account)
-       self.__distance = distance
-       self.__new_Product = new_Product
-       self.__new_customer = new_customer
-       self.__new_operator = new_operator
-       self.__status = status
+        super(operator,self).__init__(name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account)
+        self.__distance = distance
+        self.__new_Product = new_Product
+        self.__new_customer = new_customer
+        self.__new_operator = new_operator
+        self.__status = status
 
     def check_status (self , status):
         if status == "accepted" :
@@ -15,7 +15,7 @@ class operator:
             return self.__person
 
         elif status == "unaccepted" :
-            self.__person.del
+            del self.__person
             return self.__person
 
 

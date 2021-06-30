@@ -1,28 +1,31 @@
 from Product import Product
 
 class sellbasket:
-   def __init__(self , amount=0 , item=[] ):
+   def __init__(self , amount=0 , item={} , total = 0):
        if amount < 0:
           raise ValueError('The value of amount should be positive.')
        self.__amount = amount
        self.__item = item 
        self.__total = total
-       self.__totalrejected = totalrejected
-       self.__totalsold = totalsold
 
    def additem(self , name , amount=0):
         self.__item.update({name:amount})
-        return self.__items
+        return self.__item
 
-   def solditem(self , name , amount=0 , price , totalsold=0 ):
-       self.__items[name] -= amount
-       self.__totalsold += price * amount
-       return self.__items , self.__totalsold
+   def solditem(self , name , amount , price):
+        if name in self.__item:
+            if amount < self.__item[name] and amount > 0:
+                self.__item[name] -= amount
+                self.__total -= price * amount
+            elif amount >= self.__item[name]:
+                self.__total -= price * self.__items[name]
+                del self.__item[name]
+            return self.__item , self.__total
 
-   def rejecteditem(self , name , amount=0 , price , totalrejected=0)
-       self.__items[name] += amount
-       self.__totalrejected += price * amount
-       return self.__items , self.__totalrejected  
+   def rejecteditem(self , name , amount=0 , price):
+       self.__item[name] += amount
+       self.__total += price * amount
+       return self.__item , self.__total
 
     
 
@@ -37,30 +40,12 @@ class sellbasket:
       self.__total = value
 
    @property
-   def totalsold(self):
-      return self.__total
-     
-   @total.setter
-   def totalsold(self,value): 
-        self.__total = value
-
-   @property
-   def totalrejected(self):
-      return self.__total
-     
-   @total.setter
-   def totalrejected(self,value): 
-      self.__total = value
-
-   @property
    def item(self):
       return self.__item
      
    @item.setter
-   def item(self,value):
-      if  type(value) is not Product:
-         raise ValueError('the type of value should be product') 
-      self.__item.append(value)
+   def item(self,value): 
+      self.__item = value
 
    @property
    def name(self):
@@ -85,7 +70,5 @@ class sellbasket:
       return self.__price
      
    @price.setter
-   def price(self,value): 
+   def price(self,value):
       self.__price = value
-       
-
