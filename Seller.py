@@ -4,10 +4,9 @@ from sellbasket import sellbasket
 import os
 
 class seller (person):
-    def __init__(self, name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account ,company_name, id, rate ,sendingtimetostore, wallet=None, sellbasket=None, status='checking' ):
+    def __init__(self, name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account ,company_name, rate ,sendingtimetostore, wallet=wallet(0), sellbasket=sellbasket(), status='checking' ):
         super(seller,self).__init__(name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account)
         self.__company_name = company_name
-        self.__id = id
         self.__rate = rate
         self.__sendingtimetostore = sendingtimetostore
         self.__wallet = wallet
@@ -21,14 +20,11 @@ class seller (person):
     def company_name(self,value): 
         self.__company_name = value
     
-    @property
-    def id(self):
-        return self.__id
-    @id.setter
+
     def id(self):
         if os.path.exists('SL{}.txt'.format(self.__national_id[3:-1])):
             raise ValueError('seller account with this national id already exist.')
-        self.__id = 'SL'+ self.__national_id[3:-1]
+        return 'SL'+ self.__national_id[3:-1]
 
     @property
     def rate(self):
@@ -87,6 +83,25 @@ class seller (person):
         return super(person,self).__str__() +'   company name: {}   rate:{}'.format(self.company_name, self.rate)
     
     def __del__(self):
-        print ('{} {} seller from {}company (id= {}) deleted.'.format(self.name , self.lastname, self.company_name, self.id))
-  
+        print ('{} {} seller from {}company (id= {}) deleted.'.format(self.name , self.lastname, self.company_name, id))
 
+    def save_informations (self):
+        lst={
+             '{}'.format(id):
+                {'name':self.name,'lastname':self.lastname,
+                'username':self.username,'sex':self.sex,'phone_numer':self.phone_numer,
+                'national_id':self.national_id,'password':self.password,'address':self.address,
+                'email':self.email,'bank_account':self.bank_account,'id':id,
+                'company_name':self.company_name,'rate':self.rate,
+                'sendingtimetostore':self.sendingtimetostore,'wallet':self.wallet,
+                'sellbasket':self.sellbasket,'status':self.status}
+            }
+        file = open('sellers.txt','ab+')    
+        file.write('{')
+        for username, data in lst.items():
+           file.write('\'' + username + '\':' + str(data) + ',')
+        file.write('}')
+        file.close()
+
+S = seller('seller','sellri','some username','female',['09158088635','05139141838'],'2680330668','12345','adress','gmail@gmail.com','1234567891234567','company',2,'3',wallet=(123))
+print(S)

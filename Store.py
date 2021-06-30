@@ -4,9 +4,9 @@ from Customer import customer
 from Operator import operator
 import pickle
 class store:
-    def __init__(self, name, addres, sellers=[], customers=[], operators=[] ):
+    def __init__(self, name, address, sellers=[], customers=[], operators=[] ):
         self.__name = name
-        self.__addres = addres
+        self.__address = address
         self.__seller_file = r'data\{}_sellers.dat'.format(self.__name)
         self.__customer_file = r'data\{}_customers.dat'.format(self.__name)
         self.__operator_file = r'data\{}_operators.dat'.format(self.__name)
@@ -22,11 +22,11 @@ class store:
         self.__name = value
 
     @property
-    def addres(self):
-        return self.__addres
-    @addres.setter
-    def addres(self,value): 
-        self.__addres = value
+    def address(self):
+        return self.__address
+    @address.setter
+    def address(self,value): 
+        self.__address = value
     
     @property
     def sellers(self): 
@@ -103,4 +103,19 @@ class store:
             raise ValueError('the element you want to add should be of types [customers, sellers, oprators]')
         
         return self
+
+    def __str__(self): 
+        S += 'Store Name: {}    address: {} '.format(self.name, self.address)
+        S += '\n\n____________________________________________operators___________________________________________________\n\n'
         
+        for i in self.operators: 
+            S += '%s\n'%(i) 
+        
+        S += '\n\n____________________________________________customers___________________________________________________\n\n'        
+        for i in self.customers:
+            S += '%s\n'%(i) 
+        
+        S += '\n\n____________________________________________sellers___________________________________________________\n\n'        
+        for i in self.sellers:
+            S += '%s\n'%(i) 
+        return S

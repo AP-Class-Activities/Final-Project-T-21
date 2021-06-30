@@ -1,4 +1,4 @@
-import person from person
+from person import person
 
 class operator:
     def __init__(self , name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account , distance , new_customer , new_operator , new_Product , status="checking"):
@@ -6,11 +6,8 @@ class operator:
        self.__distance = distance
        self.__new_Product = new_Product
        self.__new_customer = new_customer
-       self.__operator = new_operator
+       self.__new_operator = new_operator
        self.__status = status
-
-    #def send_email(self , email):
-
 
     def check_status (self , status):
         if status == "accepted" :

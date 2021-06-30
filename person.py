@@ -22,6 +22,12 @@ class person:
         return self.__username
     @username.setter
     def username(self,value):
+        file_name = 
+        with open(file_name, 'rb') as file:
+            customers = pickle.load(file)
+        for i in customers:
+            if i.__username == value
+                raise ValueError('this user name already used by someone else.')
         self.__username = value
 
     @property
@@ -99,7 +105,7 @@ class person:
 
     
     def __str__(self):
-         return 'name: {}   lastname{}   user name: {}   sex:{}   phone number: {}   national id: {}   default address: {}   email: {}   default bank_account:{}   nearest store:{}'\
-             .format(self.name, self.lastname, self.username, self.sex, self.phone_number, self.national_id,self.address, self.email, self.bank_account, self.nearest_store)
+         return 'name: {}   lastname: {}   user name: {}   sex:{}   phone number: {}   national id: {}   default address: {}   nearest store:{}   email: {}   default bank_account:{}'\
+             .format(self.__name, self.lastname, self.username, self.sex, self.phone_number, self.national_id,self.address, self.nearest_store, self.email, self.bank_account)
         
 

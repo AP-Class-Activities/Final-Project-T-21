@@ -1,5 +1,5 @@
 class wallet :
-    def __init__(self, balance):
+    def __init__(self, balance=0):
         self.__balance = balance
     
     @property
@@ -44,3 +44,6 @@ class wallet :
 
     def __le__ (self, value):
         return self.__balance <= value
+    
+    def __str__ (self):
+        return 'balance : {}'.format(self.balance)
