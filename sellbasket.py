@@ -1,8 +1,7 @@
-from customer import customer
-from Product import product
+from Product import Product
 
 class sellbasket:
-   def __init__(self , customer , product , amount=0 , item={} , total=0 , totalsold=0 , totalrejected=0 , price):
+   def __init__(self , customer , product , amount=0 , item={} ):
        self.__customer = customer
        self.__product = product 
        if amount < 0:
@@ -10,15 +9,14 @@ class sellbasket:
        self.__amount = amount
        self.__item = item 
        self.__total = total
-       self.__price = price
        self.__totalrejected = totalrejected
        self.__totalsold = totalsold
 
-   def additem(self , name , amount=0 , price):
+   def additem(self , name , amount=0):
         self.__item.update({name:amount})
         return self.__items
 
-   def solditem(self , name , amount=0 , price , totalsold=0 )
+   def solditem(self , name , amount=0 , price , totalsold=0 ):
        self.__items[name] -= amount
        self.__totalsold += price * amount
        return self.__items , self.__totalsold
@@ -44,7 +42,7 @@ class sellbasket:
    def totalsold(self):
       return self.__total
      
-    @total.setter
+   @total.setter
     def totalsold(self,value): 
         self.__total = value
 
