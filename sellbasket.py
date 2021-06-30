@@ -1,22 +1,20 @@
-from Product import product
+from Product import Product
 
 class sellbasket:
-   def __init__(self  , product , amount=0 , item={} , total=0 , totalsold=0 , totalrejected=0 , price):
-       self.__product = product 
+   def __init__(self , amount=0 , item=[] ):
        if amount < 0:
           raise ValueError('The value of amount should be positive.')
        self.__amount = amount
        self.__item = item 
        self.__total = total
-       self.__price = price
        self.__totalrejected = totalrejected
        self.__totalsold = totalsold
 
-   def additem(self , name , amount=0 , price):
+   def additem(self , name , amount=0):
         self.__item.update({name:amount})
         return self.__items
 
-   def solditem(self , name , amount=0 , price , totalsold=0 )
+   def solditem(self , name , amount=0 , price , totalsold=0 ):
        self.__items[name] -= amount
        self.__totalsold += price * amount
        return self.__items , self.__totalsold
@@ -42,8 +40,8 @@ class sellbasket:
    def totalsold(self):
       return self.__total
      
-    @total.setter
-    def totalsold(self,value): 
+   @total.setter
+   def totalsold(self,value): 
         self.__total = value
 
    @property
@@ -56,11 +54,13 @@ class sellbasket:
 
    @property
    def item(self):
-      return self.__items
+      return self.__item
      
-   @items.setter
-   def item(self,value): 
-      self.__items = value
+   @item.setter
+   def item(self,value):
+      if  type(value) is not Product:
+         raise ValueError('the type of value should be product') 
+      self.__item.append(value)
 
    @property
    def name(self):

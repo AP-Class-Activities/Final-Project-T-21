@@ -1,4 +1,5 @@
 import re
+import pickle
 
 class person:
     def __init__(self, name, lastname, username, sex, phone_number, national_id, password, address, email, bank_account, nearest_store = None):
