@@ -1,4 +1,4 @@
-from Person import person
+from person import person
 import pickle
 
 class operator:
