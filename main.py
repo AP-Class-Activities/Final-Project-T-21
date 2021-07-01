@@ -1,5 +1,113 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
+class CustomerMenu(object):
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(1200, 800)
+        self.background = QtWidgets.QWidget(Dialog)
+        self.background.setGeometry(QtCore.QRect(-1, -1, 1201, 801))
+        self.background.setStyleSheet("background-color:rgb(50, 50, 50);")
+        self.background.setObjectName("background")
+        self.ButtonNew = QtWidgets.QPushButton(self.background)
+        self.ButtonNew.setGeometry(QtCore.QRect(50, 200, 131, 81))
+        self.ButtonNew.setStyleSheet("border-radius:20px;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 18pt \"MS Shell Dlg 2\";\n"
+"background-color: rgb(100, 15, 142);")
+        self.ButtonNew.setObjectName("ButtonNew")
+        self.LogLabel = QtWidgets.QLabel(self.background)
+        self.LogLabel.setGeometry(QtCore.QRect(260, 50, 351, 61))
+        self.LogLabel.setStyleSheet("color: rgb(255, 255, 255);\n"
+"background-color: rgb(100, 15, 142);\n"
+"font: 28pt \"MS Shell Dlg 2\";\n"
+"")
+        self.LogLabel.setText("")
+        self.LogLabel.setObjectName("LogLabel")
+        self.label = QtWidgets.QLabel(self.background)
+        self.label.setGeometry(QtCore.QRect(-10, -10, 1211, 161))
+        self.label.setStyleSheet("background-color: rgb(100, 15, 142);")
+        self.label.setText("")
+        self.label.setObjectName("label")
+        self.ButtonSetting = QtWidgets.QPushButton(self.background)
+        self.ButtonSetting.setGeometry(QtCore.QRect(40, 710, 121, 71))
+        self.ButtonSetting.setStyleSheet("border-radius:35px;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 18pt \"MS Shell Dlg 2\";\n"
+"background-color: rgb(100, 15, 142);")
+        self.ButtonSetting.setObjectName("ButtonSetting")
+        self.ButtonMore = QtWidgets.QPushButton(self.background)
+        self.ButtonMore.setGeometry(QtCore.QRect(1000, 200, 131, 81))
+        self.ButtonMore.setStyleSheet("border-radius:20px;\n"
+"color: rgb(255, 255, 255);\n"
+"font: 18pt \"MS Shell Dlg 2\";\n"
+"background-color: rgb(100, 15, 142);")
+        self.ButtonMore.setObjectName("ButtonMore")
+        self.ButtonElectronics = QtWidgets.QPushButton(self.background)
+        self.ButtonElectronics.setGeometry(QtCore.QRect(230, 200, 331, 251))
+        self.ButtonElectronics.setStyleSheet("border-radius:1px;\n"
+"color: rgb(100, 15, 142);\n"
+"background-color: rgb(255, 255, 255);\n"
+"font: 28pt \"MS Shell Dlg 2\";")
+        self.ButtonElectronics.setObjectName("ButtonElectronics")
+        self.ButtonClothing = QtWidgets.QPushButton(self.background)
+        self.ButtonClothing.setGeometry(QtCore.QRect(620, 200, 331, 251))
+        self.ButtonClothing.setStyleSheet("border-radius:1px;\n"
+"color: rgb(100, 15, 142);\n"
+"background-color: rgb(255, 255, 255);\n"
+"font: 28pt \"MS Shell Dlg 2\";")
+        self.ButtonClothing.setObjectName("ButtonClothing")
+        self.ButtonBooks = QtWidgets.QPushButton(self.background)
+        self.ButtonBooks.setGeometry(QtCore.QRect(230, 510, 331, 251))
+        self.ButtonBooks.setStyleSheet("border-radius:1px;\n"
+"color: rgb(100, 15, 142);\n"
+"background-color: rgb(255, 255, 255);\n"
+"font: 28pt \"MS Shell Dlg 2\";")
+        self.ButtonBooks.setObjectName("ButtonBooks")
+        self.ButtonHomekitchen = QtWidgets.QPushButton(self.background)
+        self.ButtonHomekitchen.setGeometry(QtCore.QRect(620, 510, 331, 251))
+        self.ButtonHomekitchen.setStyleSheet("border-radius:1px;\n"
+"font: 22pt \"MS Shell Dlg 2\";\n"
+"color: rgb(100, 15, 142);\n"
+"background-color: rgb(255, 255, 255);\n"
+"")
+        self.ButtonHomekitchen.setObjectName("ButtonHomekitchen")
+        self.label_2 = QtWidgets.QLabel(self.background)
+        self.label_2.setGeometry(QtCore.QRect(0, -50, 231, 241))
+        self.label_2.setStyleSheet("color: rgb(203, 203, 203);\n"
+"font: 36pt \"MS Shell Dlg 2\";")
+        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_2.setObjectName("label_2")
+        self.label.raise_()
+        self.LogLabel.raise_()
+        self.ButtonSetting.raise_()
+        self.ButtonMore.raise_()
+        self.ButtonClothing.raise_()
+        self.ButtonBooks.raise_()
+        self.ButtonHomekitchen.raise_()
+        self.label_2.raise_()
+        self.ButtonNew.raise_()
+        self.ButtonElectronics.raise_()
+
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+        self.LogLabel.setText("Hi")
+
+    def retranslateUi(self, Dialog):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        self.ButtonNew.setText(_translate("Dialog", "New"))
+        self.ButtonSetting.setText(_translate("Dialog", "Setting"))
+        self.ButtonMore.setText(_translate("Dialog", "More"))
+        self.ButtonElectronics.setText(_translate("Dialog", "Electronics"))
+        self.ButtonClothing.setText(_translate("Dialog", "Clothing"))
+        self.ButtonBooks.setText(_translate("Dialog", "Books"))
+        self.ButtonHomekitchen.setText(_translate("Dialog", "Home and Kitchen"))
+        self.label_2.setText(_translate("Dialog", "Menu"))
+
+
+
 class CustomerSignup(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
@@ -679,11 +787,17 @@ class LoginCustomer(object):
             for i in range(len(users)):
                 if CustomerUsername == users[i][0] and CustomerPassword == users[i][1]:
                     flag = True
-                    self.LogLabel.setText("Login Succesful")
+                    self.switchtomenu()
                     break
             if flag == False:
                 self.LogLabel.setText("Username and Password invalid")
 
+    def switchtomenu(self):
+        self.window = QtWidgets.QWidget()
+        self.ui = CustomerMenu()
+        self.ui.setupUi(self.window)
+        Form.hide()
+        self.window.show()
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
