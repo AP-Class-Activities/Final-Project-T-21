@@ -16,19 +16,24 @@ class person:
         self.__address = address
         self.__email = email
         self.__bank_account = bank_account
-        self.__nearest_store = nearest_store
+        if nearest_store not in ['store1','store2']: 
+            raise ValueError ('there is only store1 and store2')
+        self.nearest_store = nearest_store
     
     @property
     def username(self):
         return self.__username
     @username.setter
     def username(self,value):
-        file_name = 
-        with open(file_name, 'rb') as file:
-            customers = pickle.load(file)
-        for i in customers:
-            if i.__username == value
-                raise ValueError('this user name already used by someone else.')
+        for i in ['store1','store2']:
+            for j in ['customers','sellers ','operators']:
+                file_name =r'data\{}_{}.dat'.format(i,j)
+                with open(file_name, 'rb') as file:
+                    them = pickle.load(file)  
+                for h in them:
+                    if h.__username == value:
+                        raise ValueError(' this username already exist.')
+                file.close
         self.__username = value
 
     @property
@@ -95,14 +100,6 @@ class person:
         if len(value)!=16:
             raise ValueError('bank account should have 16 digits')
         self.__bank_account = value
-    
-    @property
-    def nearest_store(self):
-        return self.__nearest_store
-    @nearest_store.setter
-    def nearest_store(self,value): 
-        self.__nearest_store = value
-
 
     
     def __str__(self):

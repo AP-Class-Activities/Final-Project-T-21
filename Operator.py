@@ -1,4 +1,5 @@
-from person import person
+from Person import person
+import pickle
 
 class operator:
     def __init__(self , name, lastname, username, sex, phone_numer, national_id, password, address, email, bank_account , distance , new_customer , new_operator , new_Product , status="checking"):
@@ -59,6 +60,16 @@ class operator:
     def status(self,value): 
         self.__status = value
 
+    def id(self):
+        for i in ['store1','store2']:
+            file_name =r'data\{}_operators.dat'.format(i)
+            with open(file_name, 'rb') as file:
+                operators = pickle.load(file)  
+            for j in operators:
+                if j.id == 'OP'+ self.__national_id[3:-1]:
+                    raise ValueError('operator account with this national id already exist.')
+            file.close
+        return 'OP'+ self.__national_id[3:-1]
 
 
 

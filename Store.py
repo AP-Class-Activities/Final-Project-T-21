@@ -1,12 +1,13 @@
-from Person import person 
+from Person import person
 from Seller import seller
 from Customer import customer
 from Operator import operator
 import pickle
 class store:
-    def __init__(self, name, address, sellers=[], customers=[], operators=[] ):
+    def __init__(self, name, address,sendtimetostores, sellers=[], customers=[], operators=[] ):
         self.__name = name
         self.__address = address
+        self.__sendtimetostores = sendtimetostores
         self.__seller_file = r'data\{}_sellers.dat'.format(self.__name)
         self.__customer_file = r'data\{}_customers.dat'.format(self.__name)
         self.__operator_file = r'data\{}_operators.dat'.format(self.__name)
@@ -27,6 +28,13 @@ class store:
     @address.setter
     def address(self,value): 
         self.__address = value
+        
+    @property
+    def sendtimetostores(self):
+        return self.__sendtimetostores
+    @sendtimetostores.setter
+    def sendtimetostores(self,value): 
+        self.__sendtimetostores = value
     
     @property
     def sellers(self): 
@@ -105,7 +113,7 @@ class store:
         return self
 
     def __str__(self): 
-        S += 'Store Name: {}    address: {} '.format(self.name, self.address)
+        S += '\nStore Name: {}    address: {}   send time to other stores:{}'.format(self.name, self.address, self.sendtimetostores)
         S += '\n\n____________________________________________operators___________________________________________________\n\n'
         
         for i in self.operators: 
@@ -119,3 +127,8 @@ class store:
         for i in self.sellers:
             S += '%s\n'%(i) 
         return S
+
+store1 = store('store1',{'city':'rasht', 'street':'namjo', 'no':12},{'store2':'2d'})
+store2 = store('store2',{'city':'rasht', 'street':'moalem', 'no':35},{'store1':'2d'})
+print (store1)
+print (store2)
