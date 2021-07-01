@@ -1,6 +1,6 @@
 from Person import person
 from Seller import seller
-from Customer import customer
+from customer import customer
 from Operator import operator
 import pickle
 class store:
