@@ -1,7 +1,7 @@
 from Product import Product
 
 class sellbasket:
-   def __init__(self , amount=0 , item={} , total = 0):
+   def __init__(self , amount=0 , item=[] , total = 0):
        if amount < 0:
           raise ValueError('The value of amount should be positive.')
        self.__amount = amount
@@ -18,14 +18,15 @@ class sellbasket:
                 self.__item[name] -= amount
                 self.__total -= price * amount
             elif amount >= self.__item[name]:
-                self.__total -= price * self.__items[name]
+                self.__total -= price * self.__item[name]
                 del self.__item[name]
             return self.__item , self.__total
 
-   def rejecteditem(self , name , amount=0 , price):
-       self.__item[name] += amount
-       self.__total += price * amount
-       return self.__item , self.__total
+   def rejecteditem(self , name , amount , price):
+       if name in self.__item:
+            self.__item[name] += amount
+            self.__total += price * amount
+            return self.__item , self.__total
 
     
 
