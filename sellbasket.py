@@ -1,7 +1,7 @@
 from Product import Product
 
 class sellbasket:
-   def __init__(self , amount=0 , item=[] , total = 0):
+   def __init__(self , amount=0 , item={} , total = 0):
        if amount < 0:
           raise ValueError('The value of amount should be positive.')
        self.__amount = amount
