@@ -1,5 +1,3 @@
-import os
-
 class Product:
     def __init__(self, name , product_ID , model , price , amount , availability , rating , discount = 0, specifications = {} ,  comments = [] , category = {}):
         
@@ -104,7 +102,7 @@ class Product:
      
     @category.setter
     def category(self,value):
-        if category not in ['Electronics','Clothing','Health Care','Garden & Outdoor','Books','Collectibles & Fine Art','Home & Kitchen','Toys & Games'] :
+        if value not in ['Electronics','Clothing','Health Care','Garden & Outdoor','Books','Collectibles & Fine Art','Home & Kitchen','Toys & Games'] :
             raise ValueError('The category for a product should be in [Electronics','Clothing','Health Care',\
                  'Garden & Outdoor','Books','Collectibles & Fine Art','Home & Kitchen','Toys & Games]')
         self.__category = value
@@ -158,10 +156,11 @@ class Product:
             raise ValueError('Item out of stock.')
         self.__availability = value
 
-
+'''   
     def __str__(self):
          return 'name : {}   product_ID : {}   model : {}   price : {}   amount : {}  availability: {}   rating : {}   discount:{}   specifications:{}  comments :{}  category : {}'\
             .format(self.name, self.product_ID, self.model, self.price, self.amount, self.availability ,self.rating, self.discount, self.specifications, self.comments , self.category)
+'''
 '''
 object = Product("name",222222,"model",10000,1,"yes",3,10,"spec","comment","Books")
 print(object)
